@@ -1,0 +1,123 @@
+
+<div class="pagina-productos">
+
+  <div class="encabezado-productos">
+    <span>MANILA</span>
+    <h1>Nuestras comidas</h1>
+    <p>Descubre los sabores que tenemos para ti.</p>
+  </div>
+
+  <div class="busqueda">
+
+    <select [(ngModel)]="tipoBusqueda">
+      <option value="nombre">Buscar por nombre</option>
+      <option value="ingrediente">Buscar por ingrediente</option>
+    </select>
+
+    <input
+      type="text"
+      placeholder="Buscar comida..."
+      [(ngModel)]="terminoBusqueda"
+      (keyup.enter)="buscar()">
+
+    <button type="button" (click)="buscar()">Buscar</button>
+
+  </div>
+
+  <div class="categorias">
+
+    <button
+      *ngFor="let categoria of categorias"
+      class="tarjeta-categoria"
+      type="button"
+      [class.seleccionada]="categoriaSeleccionada === categoria.strCategory"
+      (click)="seleccionarCategoria(categoria.strCategory)">
+
+      <img [src]="categoria.strCategoryThumb" [alt]="categoria.strCategory">
+
+      <span>{{ categoria.strCategory }}</span>
+
+    </button>
+
+  </div>
+
+  <p *ngIf="cargando">Cargando comidas...</p>
+  <p *ngIf="error">{{ error }}</p>
+
+  <h2 *ngIf="categoriaSeleccionada">
+    {{ categoriaSeleccionada }}
+  </h2>
+
+  <h2 *ngIf="terminoBusqueda && !categoriaSeleccionada">
+    Resultados de búsqueda
+  </h2>
+
+  <p *ngIf="!cargando && comidas.length === 0 && !error">
+    No hay comidas para mostrar.
+  </p>
+
+  <div class="contenedor-productos">
+
+    <div class="tarjeta-comida" *ngFor="let comida of comidas">
+
+      <img [src]="comida.imagen" [alt]="comida.nombre">
+
+      <div class="info-producto">
+
+        <h3>{{ comida.nombre }}</h3>
+
+        <p>Categoría: {{ comida.categoria }}</p>
+
+        <button
+          class="btn-agregar mb-2"
+          type="button"
+          [disabled]="cargandoDetalleId === identificar(comida)"
+          (click)="toggleIngredientes(comida)">
+
+          {{ cargandoDetalleId === identificar(comida)
+            ? 'Cargando...'
+            : ingredientesAbiertos === identificar(comida)
+              ? 'Ocultar ingredientes'
+              : 'Ver ingredientes' }}
+
+        </button>
+
+        <ul *ngIf="ingredientesAbiertos === identificar(comida)">
+          <li *ngFor="let ingrediente of obtenerIngredientes(comida)">
+            {{ ingrediente.nombre }}
+            <span *ngIf="ingrediente.medida">- {{ ingrediente.medida }}</span>
+          </li>
+        </ul>
+
+        <h4>
+          {{ comida.precio | currency:'COP':'symbol-narrow':'1.0-0' }}
+        </h4>
+
+        <div class="cantidad">
+
+          <button type="button" (click)="disminuir(comida)">−</button>
+
+          <span>{{ comida.cantidad }}</span>
+
+          <button type="button" (click)="aumentar(comida)">+</button>
+
+        </div>
+
+        <button
+          class="btn-agregar"
+          type="button"
+          (click)="agregarAlPedido(comida)">
+
+          Añadir al pedido
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="errorDetalle" role="alert">{{ errorDetalle }}</p>
+
+</div>

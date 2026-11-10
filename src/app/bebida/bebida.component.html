@@ -1,0 +1,128 @@
+
+<div class="pagina-productos">
+
+  <div class="encabezado-productos">
+    <span>MANILA</span>
+    <h1>Nuestras bebidas</h1>
+    <p>Refresca tu momento con nuestras bebidas.</p>
+  </div>
+
+  
+  <div class="busqueda">
+
+    <select [(ngModel)]="tipoBusqueda">
+      <option value="nombre">Buscar por nombre</option>
+      <option value="ingrediente">Buscar por ingrediente</option>
+    </select>
+
+    <input
+      type="text"
+      placeholder="Buscar bebida..."
+      [(ngModel)]="terminoBusqueda"
+      (keyup.enter)="buscar()">
+
+    <button type="button" (click)="buscar()">Buscar</button>
+
+  </div>
+
+  
+  <div class="filtros">
+
+    <select [(ngModel)]="tipoFiltro">
+      <option value="">Todos los tipos</option>
+      <option value="Alcoholic">Alcohólicas</option>
+      <option value="Non_Alcoholic">Sin alcohol</option>
+    </select>
+
+    <select [(ngModel)]="categoriaFiltro">
+      <option value="">Todas las categorías</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria">
+        {{ nombreCategoria(categoria) }}
+      </option>
+    </select>
+
+    <button type="button" (click)="buscar()">Aplicar filtros</button>
+
+  </div>
+
+  
+  <p *ngIf="cargando">Cargando bebidas...</p>
+  <p *ngIf="error" role="alert">{{ error }}</p>
+
+  <p *ngIf="!cargando && bebidas.length === 0 && !error">
+    No se encontraron bebidas.
+  </p>
+
+  
+  <div class="contenedor-productos">
+
+    <div class="tarjeta-bebida" *ngFor="let bebida of bebidas">
+
+      <img
+        [src]="bebida.imagen"
+        [alt]="bebida.nombre"
+        loading="lazy">
+
+      <div class="info-producto">
+
+        <h3>{{ bebida.nombre }}</h3>
+
+        <p>Categoría: {{ nombreCategoria(bebida.categoria) }}</p>
+
+        <span class="etiqueta"
+          [class.sin-alcohol]="bebida.tipo === 'Non alcoholic'">
+          {{ nombreTipo(bebida.tipo) }}
+        </span>
+
+        <h4>
+          {{ bebida.precio | currency:'COP':'symbol-narrow':'1.0-0' }}
+        </h4>
+
+        <button
+          class="btn-agregar mb-2"
+          type="button"
+          [disabled]="cargandoDetalleId === identificar(bebida)"
+          (click)="toggleIngredientes(bebida)">
+
+          {{ cargandoDetalleId === identificar(bebida)
+            ? 'Cargando...'
+            : ingredientesAbiertos === identificar(bebida)
+              ? 'Ocultar ingredientes'
+              : 'Ver ingredientes' }}
+
+        </button>
+
+        <ul *ngIf="ingredientesAbiertos === identificar(bebida)">
+          <li *ngFor="let ingrediente of obtenerIngredientes(bebida)">
+            {{ ingrediente.nombre }}
+            <span *ngIf="ingrediente.medida">
+              - {{ ingrediente.medida }}
+            </span>
+          </li>
+        </ul>
+
+        <div class="cantidad">
+
+          <button type="button" (click)="disminuir(bebida)">−</button>
+
+          <span>{{ bebida.cantidad }}</span>
+
+          <button type="button" (click)="aumentar(bebida)">+</button>
+
+        </div>
+
+        <button
+          class="btn-agregar"
+          type="button"
+          (click)="agregarAlPedido(bebida)">
+          Añadir al pedido
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <p *ngIf="errorDetalle" role="alert">{{ errorDetalle }}</p>
+
+</div>

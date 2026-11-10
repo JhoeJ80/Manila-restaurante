@@ -1,0 +1,167 @@
+
+.pagina-productos {
+    background-color: #faf7f0;
+    padding: 40px 6%;
+    min-height: 100vh;
+}
+
+.encabezado-productos {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.encabezado-productos span {
+    color: #a77b43;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.encabezado-productos h1 {
+    color: #512b2b;
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.encabezado-productos p {
+    color: #34251f;
+}
+
+.busqueda {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.busqueda input,
+.busqueda select,
+.filtros select {
+    padding: 10px;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.busqueda button {
+    background-color: #512b2b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tarjeta-bebida {
+    background-color: white;
+    border: 1px solid #e4c18a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta-bebida img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.info-producto {
+    padding: 18px;
+    text-align: center;
+}
+
+.info-producto h3 {
+    color: #512b2b;
+}
+
+.info-producto p {
+    color: #62534a;
+    min-height: 40px;
+}
+
+.info-producto h4 {
+    color: #a77b43;
+    font-size: 21px;
+    margin: 15px 0;
+}
+
+.etiqueta {
+    display: inline-block;
+    background-color: #512b2b;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.sin-alcohol {
+    background-color: #a77b43;
+}
+
+.cantidad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 15px 0;
+}
+
+.cantidad button {
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+}
+
+.cantidad span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #34251f;
+}
+
+.btn-agregar {
+    width: 100%;
+    padding: 11px;
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-agregar:hover {
+    background-color: #a77b43;
+}
+
+@media (max-width: 900px) {
+    .contenedor-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor-productos {
+        grid-template-columns: 1fr;
+    }
+
+    .busqueda,
+    .filtros {
+        flex-direction: column;
+    }
+}

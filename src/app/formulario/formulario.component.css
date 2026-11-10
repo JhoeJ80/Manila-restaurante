@@ -1,0 +1,46 @@
+.seccion-pedido {
+    background-color: #faf7f0;
+    border: 1px solid #e4c18a;
+    border-radius: 15px;
+    padding: 22px;
+    height: 100%;
+}
+
+.seccion-pedido h3 {
+    color: #512b2b;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.seccion-pedido label {
+    display: block;
+    margin: 13px 0 6px;
+    font-weight: 600;
+    color: #512b2b;
+}
+
+.seccion-pedido input,
+.seccion-pedido textarea {
+    border: 1px solid #d8c4a3;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.seccion-pedido input:focus,
+.seccion-pedido textarea:focus {
+    border-color: #a77b43;
+    box-shadow: 0 0 0 .15rem rgba(167, 123, 67, .2);
+}
+
+.btn-pedido {
+    background-color: #512b2b;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.btn-pedido:hover {
+    background-color: #34251f;
+    color: white;
+}

@@ -1,0 +1,23 @@
+<div class="juego-container" *ngIf="!cargando">
+
+    <div class="objetivos">
+        <p>Encuentra estas 2 imágenes escondidas en el tablero:</p>
+        <div class="objetivo-imgs">
+            <img *ngFor="let obj of objetivos" [src]="obj.imagen" [class.encontrada]="obj.encontrada">
+        </div>
+    </div>
+
+    <div class="tablero">
+        <div *ngFor="let carta of cartas"
+            class="carta-tablero"
+            [class.correcta]="carta.encontrada"
+            [class.incorrecta]="carta.errada">
+            <img [src]="carta.descubierta ? carta.imagen : 'assets/img/logo-manila.svg'"
+                (click)="descubre2(carta.pos)" [id]="'mimg' + carta.pos">
+            <span *ngIf="carta.errada" class="marca-error" aria-label="Respuesta incorrecta">X</span>
+        </div>
+    </div>
+
+    <p *ngIf="gano">¡Encontraste las 2 imágenes🎉</p>
+    <button (click)="iniciarJuego()">Reiniciar juego</button>
+</div>

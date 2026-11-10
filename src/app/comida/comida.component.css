@@ -1,0 +1,196 @@
+.pagina-productos {
+    background-color: #faf7f0;
+    padding: 40px 6%;
+    min-height: 100vh;
+}
+
+.encabezado-productos {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.encabezado-productos span {
+    color: #a77b43;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.encabezado-productos h1 {
+    color: #512b2b;
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.encabezado-productos p {
+    color: #34251f;
+}
+
+.busqueda {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.busqueda input,
+.busqueda select {
+    padding: 10px;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.busqueda button {
+    background-color: #512b2b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.categorias {
+    display: flex;
+    gap: 18px;
+    min-width: 0;
+    overflow-x: auto;
+    padding: 4px 2px 12px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #a77b43 #eee5d7;
+    scrollbar-width: thin;
+}
+
+.tarjeta-categoria {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc((100% - 54px) / 4);
+    min-width: 150px;
+    padding: 0 0 14px;
+    overflow: hidden;
+    color: #ffc400;
+    background-color: #512020;
+    border: 1px solid #a77b43;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+    scroll-snap-align: start;
+}
+
+.tarjeta-categoria img {
+    width: 100%;
+    height: 95px;
+    object-fit: cover;
+    border-bottom: 2px solid #a77b43;
+}
+
+.tarjeta-categoria > span:first-of-type {
+    padding: 9px 5px 7px;
+}
+
+.tarjeta-categoria:hover,
+.tarjeta-categoria.seleccionada {
+    background-color: #70302a;
+}
+
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tarjeta-comida {
+    background-color: white;
+    border: 1px solid #e4c18a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta-comida img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.info-producto {
+    padding: 18px;
+    text-align: center;
+}
+
+.info-producto h3 {
+    color: #512b2b;
+}
+
+.info-producto p {
+    color: #62534a;
+    min-height: 40px;
+}
+
+.info-producto h4 {
+    color: #a77b43;
+    font-size: 21px;
+    margin: 15px 0;
+}
+
+.cantidad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 15px 0;
+}
+
+.cantidad button {
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+}
+
+.cantidad span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #34251f;
+}
+
+.btn-agregar {
+    width: 100%;
+    padding: 11px;
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-agregar:hover {
+    background-color: #a77b43;
+}
+
+@media (max-width: 900px) {
+    .tarjeta-categoria {
+        flex-basis: calc((100% - 36px) / 3);
+    }
+
+    .contenedor-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tarjeta-categoria {
+        flex-basis: calc((100% - 18px) / 2);
+        min-width: 125px;
+    }
+
+    .contenedor-productos {
+        grid-template-columns: 1fr;
+    }
+
+    .busqueda {
+        flex-direction: column;
+    }
+}

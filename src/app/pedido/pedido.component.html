@@ -1,0 +1,271 @@
+<div class="pagina-pedido container py-5">
+
+    <div class="encabezado text-center mb-4">
+
+        <img
+            src="assets/img/logo-manila.svg"
+            alt="Logo MANILA"
+        >
+
+        <h1>Realiza tu pedido</h1>
+
+        <p>Selecciona tus productos y completa tus datos.</p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-7">
+
+            <div class="seccion-productos">
+
+                <h3>Resumen de productos</h3>
+                <p *ngIf="items.length === 0">
+                    Aún no has añadido productos al pedido.
+                </p>
+
+
+                <div
+                    class="itemCarrito"
+                    *ngFor="let item of items"
+                >
+
+                    <img
+                        [src]="item.imagen"
+                        [alt]="item.nombre"
+                        width="60"
+                    >
+
+                    <span>{{ item.nombre }}</span>
+
+                    <div class="cantidad">
+                        <button
+                            type="button"
+                            aria-label="Disminuir cantidad"
+                            [disabled]="item.cantidad <= 1"
+                            (click)="disminuir(item)"
+                        >
+                            −
+                        </button>
+                        <span>{{ item.cantidad }}</span>
+                        <button
+                            type="button"
+                            aria-label="Aumentar cantidad"
+                            (click)="aumentar(item)"
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    <span>
+                        {{
+                            item.precio * item.cantidad
+                            | currency:'COP':'symbol-narrow':'1.0-0'
+                        }}
+                    </span>
+
+                    <button
+                        type="button"
+                        (click)="quitar(item)"
+                    >
+                        Quitar
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="total"
+                    *ngIf="items.length > 0"
+                >
+
+                    <span>Total a pagar:</span>
+
+                    <strong>
+                        {{ total() | currency:'COP':'symbol-narrow':'1.0-0' }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-5" *ngIf="items.length > 0">
+
+            <div class="seccion-formulario">
+
+                <h3>Datos del cliente</h3>
+
+                <app-formulario
+                    (enviarDatos)="recibirDatos($event)"
+                >
+                </app-formulario>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="pedido as pedidoConfirmado">
+
+        <div
+            class="modal fade show d-block"
+            tabindex="-1"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+                            Comprobante de pedido
+                        </h5>
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            aria-label="Cerrar"
+                            (click)="cerrarModal()"
+                        >
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center encabezado-comprobante">
+
+                            <img
+                                src="assets/img/logo-manila.svg"
+                                alt="Logo MANILA"
+                            >
+                            <h2>COMPROBANTE DE PEDIDO</h2>
+
+                            <p>
+                                Fecha:
+                                {{ pedidoConfirmado.fecha | date:'dd/MM/yyyy' }}
+                            </p>
+
+                        </div>
+
+
+                        <hr>
+
+                        <h4>Datos del cliente</h4>
+
+                        <p>
+                            <strong>Nombre:</strong>
+                            {{ pedidoConfirmado.cliente.nombre }}
+                        </p>
+
+                        <p>
+                            <strong>Celular:</strong>
+                            {{ pedidoConfirmado.cliente.celular }}
+                        </p>
+
+                        <p>
+                            <strong>Dirección:</strong>
+                            {{ pedidoConfirmado.cliente.direccion }}
+                        </p>
+
+
+                        <hr>
+
+
+                        <h4>Detalle del pedido</h4>
+
+                        <div class="tabla-productos">
+
+                            <div class="fila-producto fila-titulo">
+
+                                <span>Producto</span>
+
+                                <span>Cantidad</span>
+
+                                <span>Subtotal</span>
+
+                            </div>
+
+
+                            <div
+                                class="fila-producto"
+                                *ngFor="let producto of pedidoConfirmado.productos"
+                            >
+
+                                <span>
+                                    {{ producto.nombre }}
+                                </span>
+
+                                <span>
+                                    {{ producto.cantidad }}
+                                </span>
+
+                                <span>
+                                    {{
+                                        producto.precio * producto.cantidad
+                                        | currency:'COP':'symbol-narrow':'1.0-0'
+                                    }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="total total-comprobante">
+
+                            <span>TOTAL A PAGAR:</span>
+
+                            <strong>
+                                {{
+                                    pedidoConfirmado.calcularTotal()
+                                    | currency:'COP':'symbol-narrow':'1.0-0'
+                                }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="text-center mt-4">
+
+                            <p>¡Gracias por elegir MANILA!</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn btn-cerrar"
+                            (click)="descargarPDF()"
+                        >
+                            Descargar PDF
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-cerrar"
+                            (click)="cerrarModal()"
+                        >
+                            Cerrar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-backdrop fade show"></div>
+
+    </div>
+
+</div>

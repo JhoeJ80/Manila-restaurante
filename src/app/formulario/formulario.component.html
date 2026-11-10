@@ -1,0 +1,44 @@
+<div class="seccion-pedido">
+    <h3>Datos del cliente</h3>
+
+    <form (ngSubmit)="realizarPedido()">
+
+        <label for="nombre">Nombre completo</label>
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            [(ngModel)]="cliente.nombre"
+            required
+        >
+
+        <label for="celular">Celular</label>
+        <input
+            type="tel"
+            id="celular"
+            name="celular"
+            class="form-control"
+            [(ngModel)]="cliente.celular"
+            inputmode="tel"
+            required
+        >
+
+        <label for="direccion">Dirección</label>
+        <textarea
+            id="direccion"
+            name="direccion"
+            class="form-control"
+            rows="3"
+            [(ngModel)]="cliente.direccion"
+            required
+        ></textarea>
+
+        <p *ngIf="error" class="text-danger mt-3" role="alert">{{ error }}</p>
+
+        <button type="submit" class="btn btn-pedido w-100 mt-4">
+            Realizar pedido
+        </button>
+
+    </form>
+</div>

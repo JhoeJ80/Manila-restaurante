@@ -1,0 +1,172 @@
+
+.pagina-inicio {
+    font-family: 'Georgia', serif;
+    background-color: #faf7f0;
+    color: #34251f;
+}
+
+.presentacion {
+    background-color: #f0e8d9;
+    padding: 85px 8%;
+}
+
+.texto-presentacion {
+    padding: 35px;
+}
+
+.subtitulo {
+    color: #a77b43;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.texto-presentacion h1 {
+    font-size: 53px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #512b2b;
+}
+
+.texto-presentacion h1 span {
+    color: #a77b43;
+}
+
+.texto-presentacion p {
+    color: #665a50;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 480px;
+}
+
+.btn-restaurante {
+    background-color: #672f32;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 4px;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-restaurante:hover {
+    background-color: #a77b43;
+    color: white;
+}
+
+#carruselRestaurante {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.informacion {
+    padding-top: 85px;
+    padding-bottom: 85px;
+}
+
+.informacion h2,
+.encabezado-platos h2 {
+    color: #512b2b;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.informacion p {
+    color: #71645a;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.platos {
+    background-color: #f0e8d9;
+    padding: 75px 8%;
+}
+
+.encabezado-platos {
+    margin-bottom: 40px;
+}
+
+.encabezado-platos p {
+    color: #71645a;
+    font-size: 16px;
+}
+
+.plato-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fffdf9;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.plato-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imagen-plato {
+    height: 250px;
+    overflow: hidden;
+    background-color: #d8c7b1;
+}
+
+.imagen-plato img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.plato-card .card-body {
+    padding: 25px;
+}
+
+.etiqueta {
+    color: #a77b43;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.plato-card h3 {
+    color: #512b2b;
+    font-size: 24px;
+    margin: 12px 0;
+    font-weight: bold;
+}
+
+.plato-card p {
+    color: #71645a;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+
+    .presentacion {
+        padding: 40px 5%;
+    }
+
+    .texto-presentacion {
+        padding: 20px 10px;
+        margin-bottom: 25px;
+    }
+
+    .texto-presentacion h1 {
+        font-size: 38px;
+    }
+
+    .informacion {
+        padding: 55px 25px;
+    }
+
+    .informacion h2,
+    .encabezado-platos h2 {
+        font-size: 29px;
+    }
+
+    .platos {
+        padding: 55px 7%;
+    }
+}

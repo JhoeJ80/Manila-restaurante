@@ -1,0 +1,259 @@
+.pagina-pedido {
+    color: #34251f;
+}
+
+.encabezado img {
+    width: 130px;
+    height: auto;
+    object-fit: contain;
+}
+
+.encabezado h1 {
+    color: #512b2b;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.encabezado p {
+    color: #777;
+}
+
+.seccion-productos {
+    background-color: #faf7f0;
+    border: 1px solid #e4c18a;
+    border-radius: 15px;
+    padding: 22px;
+    height: 100%;
+}
+
+.seccion-productos h3 {
+    color: #512b2b;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.itemCarrito {
+    display: grid;
+    grid-template-columns: 60px minmax(0, 1fr) auto auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid #e4c18a;
+}
+
+.itemCarrito img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 9px;
+    flex-shrink: 0;
+}
+
+.itemCarrito > span:first-of-type {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.itemCarrito span {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.itemCarrito > span:nth-of-type(2) {
+    flex-shrink: 0;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.itemCarrito .cantidad button {
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.itemCarrito .cantidad button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.itemCarrito button {
+    background-color: #512b2b;
+    color: white;
+    border: 1px solid #a77b43;
+    border-radius: 5px;
+    padding: 6px 12px;
+    white-space: nowrap;
+}
+
+.itemCarrito > button {
+    flex-shrink: 0;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.total strong {
+    color: #512b2b;
+    font-size: 20px;
+}
+
+
+.encabezado-comprobante img {
+    width: 110px;
+    height: auto;
+    object-fit: contain;
+}
+
+.encabezado-comprobante h2 {
+    color: #512b2b;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.fila-producto {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.fila-titulo {
+    font-weight: bold;
+    color: #512b2b;
+    background-color: #faf7f0;
+}
+
+.fila-producto span:last-child {
+    text-align: right;
+}
+
+.total-comprobante {
+    background-color: #faf7f0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+    .itemCarrito {
+        grid-template-columns: 48px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .itemCarrito img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .itemCarrito span {
+        font-size: 11px;
+    }
+
+    .itemCarrito > span:nth-of-type(2) {
+        grid-column: 2;
+        justify-self: end;
+    }
+
+    .itemCarrito > button {
+        grid-column: 3;
+    }
+
+    .fila-producto {
+        font-size: 11px;
+        gap: 5px;
+    }
+}
+
+
+.modal {
+    overflow-y: auto;
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: 1px solid #e4c18a;
+}
+
+.modal-header {
+    background-color: #512b2b;
+    color: white;
+    border-radius: 14px 14px 0 0;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    border-top: 1px solid #e4c18a;
+}
+
+.modal-body h4 {
+    color: #512b2b;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.btn-cerrar {
+    background-color: #512b2b;
+    color: white;
+    padding: 10px 25px;
+}
+
+.btn-cerrar:hover {
+    background-color: #34251f;
+    color: white;
+}
+
+@media print {
+    :host * {
+        visibility: hidden;
+    }
+
+    .modal,
+    .modal * {
+        visibility: visible;
+    }
+
+    .modal {
+        position: absolute;
+        inset: 0;
+        overflow: visible;
+    }
+
+    .modal-dialog {
+        max-width: none;
+        margin: 0;
+    }
+
+    .modal-footer,
+    .modal-backdrop {
+        display: none !important;
+    }
+}

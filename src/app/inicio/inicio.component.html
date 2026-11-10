@@ -1,0 +1,159 @@
+<div class="pagina-inicio">
+
+    <section class="presentacion container-fluid">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 texto-presentacion">
+                <span class="subtitulo">SABOR Y TRADICIÓN</span>
+
+                <h1>Una experiencia<br>
+                    <span>para disfrutar</span>
+                </h1>
+
+                <p>
+                    Descubre una experiencia gastronómica única,
+                    donde cada plato está preparado con ingredientes
+                    seleccionados, pasión y dedicación.
+                </p>
+
+                <a href="#platos" class="btn btn-restaurante">
+                    Descubrir nuestros platos
+                </a>
+            </div>
+
+            <div class="col-md-6">
+
+                <div id="carruselRestaurante" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4a0bHHANbMQEtVWIp9qLVTqHQeh9WwfbSe4ij2Nf_Pw&s=10"
+                                class="d-block w-100" alt="Plato de comida 1">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkTyfJ91ILhYHnnmUpCCrvfcXYSQZrMRdCuBnlqPGNgg&s=10"
+                                class="d-block w-100" alt="Plato de comida 1">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJBwXNznWozs-Z2Tp52I7kLpXGFsVpjAyAd_R0DcpCZA&s=10"
+                                class="d-block w-100" alt="Plato de comida 1">
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselRestaurante"
+                        data-bs-slide="prev">
+
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselRestaurante"
+                        data-bs-slide="next">
+
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="informacion container">
+
+        <div class="row justify-content-center text-center">
+
+            <div class="col-lg-9">
+                <span class="subtitulo">NUESTRA ESENCIA</span>
+
+                <h2>Más que un restaurante</h2>
+
+                <p>
+                    Creemos que la buena comida reúne personas y crea
+                    momentos inolvidables. Por eso, combinamos sabores,
+                    tradición y creatividad para ofrecer platos que
+                    despiertan los sentidos. Cada detalle está pensado
+                    para que disfrutes una experiencia especial.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="platos container-fluid" id="platos">
+
+        <div class="text-center encabezado-platos">
+            <span class="subtitulo">NUESTRAS RECOMENDACIONES</span>
+
+            <h2>Platos estrella</h2>
+
+            <p>Descubre dos de nuestras especialidades.</p>
+        </div>
+
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-5 col-lg-4">
+
+                <div class="card plato-card">
+
+                    <div class="imagen-plato">
+                        <img *ngIf="platoEstrella"
+                            [src]="platoEstrella.imagen"
+                            class="card-img-top"
+                            [alt]="platoEstrella.nombre"
+                            >
+        
+                    </div>
+
+                    <div class="card-body">
+                        <span class="etiqueta">PLATO DESTACADO</span>
+
+                        <h3 class="card-title">{{ platoEstrella?.nombre || 'Plato destacado' }}</h3>
+
+                        <p class="card-text">
+                            {{ platoEstrella ? 'Una de nuestras recomendaciones.' : 'Consulta nuestra recomendación del día.' }}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+
+                <div class="card plato-card">
+
+                    <div class="imagen-plato">
+                        <img *ngIf="bebidaEstrella"
+                            [src]="bebidaEstrella.imagen"
+                            class="card-img-top"
+                            [alt]="bebidaEstrella.nombre"
+                            >
+                    </div>
+
+                    <div class="card-body">
+                        <span class="etiqueta">BEBIDA DESTACADA</span>
+
+                        <h3 class="card-title">{{ bebidaEstrella?.nombre || 'Bebida destacada' }}</h3>
+
+                        <p class="card-text">
+                            {{ bebidaEstrella ? 'Una de nuestras bebidas recomendadas.' : 'Consulta nuestra recomendación de bebidas.' }}
+
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

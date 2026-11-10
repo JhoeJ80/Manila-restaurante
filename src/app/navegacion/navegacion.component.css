@@ -1,0 +1,94 @@
+
+.navbar-manila {
+    background-color: #512b2b;
+    padding: 12px 0;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.navbar-manila .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.marca span {
+    color: #e4c18a;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+
+.logo {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #c49a61;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.menu-manila {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu-manila .nav-link {
+    color: #f5ead8;
+    font-size: 16px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu-manila .nav-link:hover {
+    color: #d5ad70;
+}
+
+.menu-manila .boton-pedido {
+    border: 1px solid #c49a61;
+    border-radius: 5px;
+    padding: 8px 20px;
+    color: #e4c18a;
+}
+
+.menu-manila .boton-pedido:hover {
+    background-color: #c49a61;
+    color: #512b2b;
+}
+
+@media (max-width: 576px) {
+
+    .navbar-manila .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu-manila {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .menu-manila .nav-link {
+        font-size: 14px;
+    }
+
+    .marca span {
+        font-size: 22px;
+    }
+}
