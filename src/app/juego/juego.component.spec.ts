@@ -14,7 +14,9 @@ describe('JuegoComponent', () => {
       providers: [{
         provide: HttpClient,
         useValue: {
-          get: () => of({ meals: [{ idMeal: '1', strMeal: 'Plato', strMealThumb: 'plato.jpg' }] })
+          get: (url: string) => url.includes('themealdb')
+            ? of({ meals: [{ idMeal: '1', strMeal: 'Plato', strMealThumb: 'plato.jpg' }] })
+            : of({ drinks: [{ idDrink: '2', strDrink: 'Cóctel', strDrinkThumb: 'coctel.jpg' }] })
         }
       }]
     })
@@ -37,5 +39,16 @@ describe('JuegoComponent', () => {
 
     expect(cartaIncorrecta.errada).toBeTrue();
     expect(fixture.nativeElement.textContent).toContain('X');
+  });
+
+  it('uses one meal image and one cocktail image as targets', () => {
+    expect(component.objetivos.map(objetivo => objetivo.tipo)).toEqual([
+      'Comida',
+      'Cóctel'
+    ]);
+    expect(component.objetivos.map(objetivo => objetivo.imagen)).toEqual([
+      'plato.jpg',
+      'coctel.jpg'
+    ]);
   });
 });

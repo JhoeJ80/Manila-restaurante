@@ -3,7 +3,11 @@
     <div class="objetivos">
         <p>Encuentra estas 2 imágenes escondidas en el tablero:</p>
         <div class="objetivo-imgs">
-            <img *ngFor="let obj of objetivos" [src]="obj.imagen" [class.encontrada]="obj.encontrada">
+            <figure *ngFor="let obj of objetivos">
+                <img [src]="obj.imagen" [alt]="obj.tipo + ': ' + obj.nombre"
+                    [class.encontrada]="obj.encontrada">
+                <figcaption>{{ obj.tipo }}</figcaption>
+            </figure>
         </div>
     </div>
 
@@ -13,6 +17,7 @@
             [class.correcta]="carta.encontrada"
             [class.incorrecta]="carta.errada">
             <img [src]="carta.descubierta ? carta.imagen : 'assets/img/logo-manila.svg'"
+                [alt]="carta.descubierta ? carta.nombre : 'Carta oculta'"
                 (click)="descubre2(carta.pos)" [id]="'mimg' + carta.pos">
             <span *ngIf="carta.errada" class="marca-error" aria-label="Respuesta incorrecta">X</span>
         </div>

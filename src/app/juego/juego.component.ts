@@ -34,30 +34,45 @@ export class JuegoComponent implements OnInit {
     this.intentos = 0;
     this.objetivos = [];
 
-    const peticiones = Array.from({ length: 2 }, () =>
-      this.http.get<any>('https://www.themealdb.com/api/json/v1/1/random.php')
-    );
+    forkJoin({
+      comida: this.http.get<any>(
+        'https://www.themealdb.com/api/json/v1/1/random.php'
+      ),
+      coctel: this.http.get<any>(
+        'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+      )
+    }).subscribe(({ comida, coctel }) => {
+      const platos = comida.meals[0];
+      const bebida = coctel.drinks[0];
 
-    forkJoin(peticiones).subscribe((respuestas) => {
-      const comidas = respuestas.map(r => r.meals[0]);
-
-      const idsUnicos = new Map<string, any>();
-      comidas.forEach(c => idsUnicos.set(c.idMeal, c));
-      const objetivosReales = Array.from(idsUnicos.values());
-
-      const cartasObjetivo: any[] = objetivosReales.map(c => ({
-        idMeal: c.idMeal,
-        nombre: c.strMeal,
-        imagen: c.strMealThumb,
-        pos: 0,
-        descubierta: false,
-        esObjetivo: true,
-        encontrada: false,
-        errada: false
-      }));
+      const cartasObjetivo: any[] = [
+        {
+          id: platos.idMeal,
+          tipo: 'Comida',
+          nombre: platos.strMeal,
+          imagen: platos.strMealThumb,
+          pos: 0,
+          descubierta: false,
+          esObjetivo: true,
+          encontrada: false,
+          errada: false
+        },
+        {
+          id: bebida.idDrink,
+          tipo: 'Cóctel',
+          nombre: bebida.strDrink,
+          imagen: bebida.strDrinkThumb,
+          pos: 0,
+          descubierta: false,
+          esObjetivo: true,
+          encontrada: false,
+          errada: false
+        }
+      ];
 
       const cartasVacias: any[] = Array.from({ length: 14 }, () => ({
-        idMeal: null,
+        id: null,
+        tipo: '',
         nombre: '',
         imagen: 'assets/img/logo-manila.svg',
         pos: 0,
